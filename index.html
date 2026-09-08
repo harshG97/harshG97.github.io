@@ -338,14 +338,48 @@
   /* ============================================================
      ENTRIES
      ============================================================ */
+  /* timeline entry — used where chronology matters (experience) */
   .entry {
     padding: 0 0 0 1.15rem;
-    margin-bottom: 2.6rem;
+    margin-bottom: 2.4rem;
     border-left: 2px solid var(--line-soft);
     transition: border-color .2s ease;
   }
   .entry:hover { border-left-color: var(--accent); }
   .entry:last-child { margin-bottom: 0; }
+
+  /* card — used where items are discrete and comparable (projects) */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.3rem 1.4rem;
+    margin-bottom: 1rem;
+    border-left-width: 1px;
+    transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover {
+    border-color: var(--ink-3);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+  }
+  .card:last-child { margin-bottom: 0; }
+
+  /* two-up grid for the shorter cards */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .grid-2 .card { margin-bottom: 0; height: 100%; }
+  @media (max-width: 40rem) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 36rem) {
+    .card { padding: 1.1rem 1.15rem; }
+  }
 
   .entry-head {
     display: flex; justify-content: space-between;
@@ -564,7 +598,7 @@
   <section id="projects">
     <div class="sec-head"><h2>Projects</h2></div>
 
-    <article class="entry">
+    <article class="entry card">
       <div class="entry-head">
         <h3>MedeFence — multi-agent red-team testbed</h3>
         <span class="meta">2026</span>
@@ -592,7 +626,7 @@
       </div>
     </article>
 
-    <article class="entry">
+    <article class="entry card">
       <div class="entry-head">
         <h3>CanvasAI — agentic assistant for Canvas LMS</h3>
         <span class="meta">2026</span>
@@ -616,7 +650,7 @@
       </div>
     </article>
 
-    <article class="entry">
+    <article class="entry card">
       <div class="entry-head">
         <h3>jobwatch — a job-search pipeline I actually use</h3>
         <span class="meta">2026</span>
@@ -644,12 +678,12 @@
       </div>
     </article>
 
-    <article class="entry">
+    <div class="grid-2">
+<article class="entry card">
       <div class="entry-head">
         <h3>Symbolic music generation with transformers</h3>
-        <span class="meta">2025</span>
       </div>
-      <p class="sub">PyTorch · GPT-2 · T5</p>
+      <p class="sub">PyTorch · GPT-2 · T5 · 2025</p>
       <div class="body">
         <p>
           Fine-tuned GPT-2 for autoregressive continuation and T5 for span infilling on 45K+ MIDI
@@ -664,12 +698,11 @@
       </div>
     </article>
 
-    <article class="entry">
+    <article class="entry card">
       <div class="entry-head">
         <h3>RECAP — audio captioning</h3>
-        <span class="meta">2025</span>
       </div>
-      <p class="sub">CLAP encoder · GPT-2 decoder · AudioCaps</p>
+      <p class="sub">CLAP encoder · GPT-2 decoder · AudioCaps · 2025</p>
       <div class="body">
         <p>
           A prefix-tuned captioning model pairing a CLAP audio encoder with a GPT-2 decoder, plus a
@@ -683,6 +716,7 @@
         </div>
       </div>
     </article>
+    </div>
   </section>
 
   <!-- ============ EXPERIENCE ============ -->
