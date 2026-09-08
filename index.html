@@ -562,27 +562,19 @@
       <p class="sub">First author · NeurIPS 2026 workshop submission</p>
       <div class="body">
         <p>
-          Agent safety benchmarks report how often an agent produces a harmful outcome, and a
-          safeguard that drives that rate down is read as evidence it works. But a safeguard also
-          removes the event the metric counts — so the number left behind can describe the
-          <em>harness</em> rather than the agent.
+          Agent safety benchmarks report how often an agent causes harm, and a safeguard that
+          drives that rate down is read as evidence it works. But the safeguard also removes the
+          event the metric counts — so the number left behind can describe the <em>harness</em>
+          rather than the agent.
         </p>
         <p>
-          I tested this by changing only <strong>where</strong> a safeguard intervenes, holding the
-          agent, the attacks and the scenario fixed: <strong>1,281 trials</strong> of an attacker
-          agent working a medical records-desk assistant for synthetic patient data. Which metric
-          collapses follows the interception point. A deterministic gate at the tool holds
-          unauthorised access at exactly <strong>0.00</strong> — the same value in four
-          conditions — and leaves disclosure unmeasurable. A model reviewer on the output leaves
-          access untouched and holds disclosure at <strong>0.02</strong>.
-        </p>
-        <p>
-          The near-zero is the more dangerous of the two: the gate's zero is <em>definitional</em>,
-          flat at every turn cap, while 0.02 is <em>stochastic</em> and passes for an ordinary rate.
-          Keeping the counterfactual observable rather than deleting it — a decoy record instead of
-          a refusal, the vetoed draft instead of nothing — recovers a <strong>measured 0.91</strong>
-          interception rate. A floor that moves with the interception point is a fact about the
-          harness, not the agent.
+          Across <strong>1,281 trials</strong> I changed only <strong>where</strong> the safeguard
+          intervenes. A gate at the tool holds unauthorised access at exactly <strong>0.00</strong>
+          in four conditions and leaves disclosure unmeasurable; a reviewer on the output holds
+          disclosure at <strong>0.02</strong>. The near-zero is the more dangerous of the two — the
+          gate's zero is <em>definitional</em>, while 0.02 is <em>stochastic</em> and passes for an
+          ordinary rate. Keeping the counterfactual observable instead of deleting it recovers a
+          <strong>measured 0.91</strong>.
         </p>
         <div class="tags">
           <span class="tag">LLM agents</span>
