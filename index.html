@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harsh Gupta — AI / ML Engineer</title>
+<meta name="description" content="Harsh Gupta builds LLM systems that run in production. MS Analytics at Georgia Tech, ML Intern at Athena, previously Senior Data Scientist at FUJIFILM in Tokyo.">
+<meta name="author" content="Harsh Gupta">
+<link rel="canonical" href="https://harshg97.github.io/">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Harsh Gupta — AI / ML Engineer">
+<meta property="og:description" content="I build LLM systems that run in production — labeling pipelines, retrieval, evaluation, and the orchestration that keeps them alive after the demo.">
+<meta property="og:url" content="https://harshg97.github.io/">
+<meta property="og:image" content="https://harshg97.github.io/profilephoto.jpeg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://harshg97.github.io/profilephoto.jpeg">
+<meta name="theme-color" content="#fbfaf8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12121a" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23b8452a%22/><text x=%2250%22 y=%2271%22 font-size=%2262%22 font-family=%22Georgia,serif%22 fill=%22white%22 text-anchor=%22middle%22>H</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     TOKENS
+     ============================================================ */
+  :root {
+    color-scheme: light;
+
+    --bg:        #fbfaf8;
+    --bg-2:      #f4f2ee;
+    --surface:   #ffffff;
+    --line:      #e6e3dc;
+    --line-soft: #efece6;
+
+    --ink:   #17171a;
+    --ink-2: #4e4d52;
+    --ink-3: #8b8983;
+
+    --accent:      #b0452b;
+    --accent-deep: #8f3521;
+    --accent-wash: #fbf0eb;
+
+    --sans:  "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --serif: "Newsreader", ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --mono:  ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+    --maxw: 45rem;
+    --pad:  1.6rem;
+
+    --shadow: 0 1px 2px rgba(23,23,26,.04), 0 8px 24px -12px rgba(23,23,26,.10);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg:        #12121a;
+      --bg-2:      #171720;
+      --surface:   #1a1a24;
+      --line:      #2b2b37;
+      --line-soft: #23232e;
+
+      --ink:   #eceaf0;
+      --ink-2: #adaab8;
+      --ink-3: #78757f;
+
+      --accent:      #f0946f;
+      --accent-deep: #ffb191;
+      --accent-wash: #26191a;
+
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg:        #12121a;
+    --bg-2:      #171720;
+    --surface:   #1a1a24;
+    --line:      #2b2b37;
+    --line-soft: #23232e;
+
+    --ink:   #eceaf0;
+    --ink-2: #adaab8;
+    --ink-3: #78757f;
+
+    --accent:      #f0946f;
+    --accent-deep: #ffb191;
+    --accent-wash: #26191a;
+
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.55);
+  }
+
+  /* ============================================================
+     BASE
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; animation: none !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    font-feature-settings: "cv05" 1, "ss01" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-deep); text-decoration: underline; text-underline-offset: .18em; text-decoration-thickness: 1px; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  p { margin: 0 0 .95rem; color: var(--ink-2); }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--ink); font-weight: 600; }
+  em { font-style: italic; }
+
+  /* ============================================================
+     TOP BAR
+     ============================================================ */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s ease;
+  }
+  .topbar.stuck { border-bottom-color: var(--line); }
+
+  .topbar-inner {
+    max-width: var(--maxw); margin: 0 auto;
+    padding: .7rem var(--pad);
+    display: flex; align-items: center; gap: 1rem;
+  }
+
+  .brand {
+    font-family: var(--serif);
+    font-size: 1.02rem;
+    font-weight: 500;
+    letter-spacing: -.01em;
+    color: var(--ink);
+    margin-right: auto;
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity .25s ease, transform .25s ease;
+    pointer-events: none;
+  }
+  .topbar.stuck .brand { opacity: 1; transform: none; pointer-events: auto; }
+  .brand:hover { text-decoration: none; color: var(--accent); }
+
+  .navlinks { display: flex; gap: 1.15rem; }
+  .navlinks a {
+    font-family: var(--mono);
+    font-size: .735rem;
+    letter-spacing: .04em;
+    color: var(--ink-3);
+    text-transform: lowercase;
+  }
+  .navlinks a:hover { color: var(--ink); text-decoration: none; }
+
+  .toggle {
+    width: 1.95rem; height: 1.95rem; flex: none;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--ink-3);
+    cursor: pointer;
+    display: grid; place-items: center;
+    padding: 0;
+    transition: color .15s, border-color .15s;
+  }
+  .toggle:hover { color: var(--ink); border-color: var(--ink-3); }
+  .toggle svg { width: 14px; height: 14px; display: block; }
+  .toggle .moon { display: none; }
+  :root[data-theme="dark"] .toggle .moon { display: block; }
+  :root[data-theme="dark"] .toggle .sun { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .toggle .moon { display: block; }
+    :root:not([data-theme="light"]) .toggle .sun  { display: none; }
+  }
+
+  @media (max-width: 33rem) {
+    .navlinks a:nth-child(n+4) { display: none; }
+    .navlinks { gap: .85rem; }
+  }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero { padding: 3.6rem 0 2.4rem; }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    gap: 2.1rem;
+    align-items: start;
+  }
+
+  .portrait {
+    width: 8.5rem; height: 8.5rem;
+    border-radius: 14px;
+    object-fit: cover;
+    display: block;
+    background: var(--bg-2);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line-soft);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.25rem, 6.2vw, 3.05rem);
+    line-height: 1.03;
+    letter-spacing: -.022em;
+    font-weight: 400;
+    margin: -.35rem 0 .85rem;
+    color: var(--ink);
+  }
+
+  .tagline {
+    font-size: clamp(1.02rem, 2.7vw, 1.12rem);
+    line-height: 1.58;
+    color: var(--ink-2);
+    margin: 0 0 1.35rem;
+    max-width: 32rem;
+  }
+
+  .status {
+    font-family: var(--mono);
+    font-size: .765rem;
+    line-height: 1.95;
+    color: var(--ink-3);
+    letter-spacing: .005em;
+    margin: 0 0 1.6rem;
+    padding-left: .85rem;
+    border-left: 2px solid var(--line);
+  }
+  .status b { color: var(--ink-2); font-weight: 500; }
+
+  .links { display: flex; flex-wrap: wrap; gap: .45rem; }
+  .links a {
+    font-family: var(--mono);
+    font-size: .755rem;
+    letter-spacing: .01em;
+    padding: .4rem .8rem;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: var(--ink-2);
+    background: var(--surface);
+    transition: border-color .15s, color .15s, background .15s;
+    white-space: nowrap;
+  }
+  .links a:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-wash); text-decoration: none; }
+  .links a.primary {
+    background: var(--accent); border-color: var(--accent);
+    color: #fff; font-weight: 500;
+  }
+  :root[data-theme="dark"] .links a.primary,
+  :root:not([data-theme="light"]) .links a.primary { color: #221310; }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .links a.primary { color: #fff; }
+  }
+  .links a.primary:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
+
+  @media (max-width: 36rem) {
+    .hero { padding: 2.6rem 0 2.4rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 1.4rem; }
+    .portrait { width: 6.2rem; height: 6.2rem; border-radius: 12px; }
+    h1 { margin-top: 0; }
+    .status { line-height: 1.8; }
+  }
+
+  /* ============================================================
+     SECTIONS
+     ============================================================ */
+  section {
+    padding: 3rem 0 .5rem;
+    scroll-margin-top: 4rem;
+  }
+  section + section { padding-top: 3.1rem; }
+
+  .sec-head {
+    display: flex; align-items: center; gap: 1rem;
+    margin: 0 0 2rem;
+  }
+  .sec-head h2 {
+    font-family: var(--mono);
+    font-size: .715rem;
+    font-weight: 500;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0;
+    white-space: nowrap;
+  }
+  .sec-head::after {
+    content: ""; flex: 1; height: 1px;
+    background: var(--line);
+  }
+
+  h3 {
+    font-size: 1.075rem;
+    font-weight: 600;
+    letter-spacing: -.014em;
+    margin: 0;
+    line-height: 1.38;
+    color: var(--ink);
+  }
+
+  /* ============================================================
+     ENTRIES
+     ============================================================ */
+  .entry {
+    padding: 0 0 0 1.15rem;
+    margin-bottom: 2.6rem;
+    border-left: 2px solid var(--line-soft);
+    transition: border-color .2s ease;
+  }
+  .entry:hover { border-left-color: var(--accent); }
+  .entry:last-child { margin-bottom: 0; }
+
+  .entry-head {
+    display: flex; justify-content: space-between;
+    align-items: baseline; gap: .6rem 1.2rem; flex-wrap: wrap;
+    margin-bottom: .12rem;
+  }
+
+  .meta {
+    font-family: var(--mono);
+    font-size: .725rem;
+    color: var(--ink-3);
+    white-space: nowrap;
+    letter-spacing: .015em;
+  }
+
+  .sub {
+    font-family: var(--mono);
+    font-size: .745rem;
+    color: var(--ink-3);
+    margin: 0 0 .75rem;
+    letter-spacing: .015em;
+  }
+
+  .body p { font-size: .95rem; line-height: 1.68; }
+
+  ul.plain { margin: .1rem 0 0; padding-left: 1.05rem; }
+  ul.plain li {
+    color: var(--ink-2);
+    font-size: .95rem;
+    line-height: 1.62;
+    margin-bottom: .48rem;
+    padding-left: .1rem;
+  }
+  ul.plain li:last-child { margin-bottom: 0; }
+  ul.plain li::marker { color: var(--ink-3); }
+
+  .tags { display: flex; flex-wrap: wrap; gap: .32rem .4rem; margin-top: .85rem; }
+  .tag {
+    font-family: var(--mono);
+    font-size: .68rem;
+    color: var(--ink-3);
+    background: var(--bg-2);
+    border: 1px solid var(--line-soft);
+    border-radius: 3px;
+    padding: .12rem .44rem;
+    letter-spacing: .015em;
+    white-space: nowrap;
+  }
+
+  .entry-links {
+    display: flex; flex-wrap: wrap; gap: 1.1rem;
+    margin-top: .85rem;
+    font-family: var(--mono);
+    font-size: .745rem;
+  }
+
+  /* ---- feature card (research) ---- */
+  .feature {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 1.4rem 1.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 0;
+  }
+  .feature:hover { border-left-color: var(--accent); }
+  .feature .kicker {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: .665rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-wash);
+    border-radius: 3px;
+    padding: .16rem .5rem;
+    margin-bottom: .75rem;
+  }
+  @media (max-width: 36rem) {
+    .feature { padding: 1.15rem 1.1rem; }
+  }
+
+  /* ---- compact rows ---- */
+  .rows { display: grid; gap: 1.3rem; }
+  .row {
+    display: flex; justify-content: space-between;
+    gap: .35rem 1.2rem; align-items: baseline; flex-wrap: wrap;
+  }
+  .row-main { flex: 1 1 18rem; min-width: 0; }
+  .row-title { font-weight: 600; color: var(--ink); font-size: .975rem; letter-spacing: -.008em; }
+  .row-sub { font-size: .9rem; color: var(--ink-2); margin-top: .12rem; line-height: 1.55; }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  footer {
+    margin-top: 3.6rem;
+    border-top: 1px solid var(--line);
+    padding: 1.8rem 0 3.5rem;
+    font-family: var(--mono);
+    font-size: .735rem;
+    color: var(--ink-3);
+    display: flex; justify-content: space-between; gap: .6rem 1rem; flex-wrap: wrap;
+    letter-spacing: .015em;
+  }
+
+  /* ============================================================
+     PRINT
+     ============================================================ */
+  @media print {
+    .topbar, .toggle, .links { display: none; }
+    body { background: #fff; color: #000; font-size: 10.5pt; }
+    .entry { border-left: none; padding-left: 0; break-inside: avoid; }
+    .feature { box-shadow: none; }
+    section { padding: 1rem 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">Harsh&nbsp;Gupta</a>
+    <nav class="navlinks">
+      <a href="#research">research</a>
+      <a href="#work">work</a>
+      <a href="#experience">experience</a>
+      <a href="#education">education</a>
+    </nav>
+    <button class="toggle" id="themeBtn" aria-label="Toggle colour theme" title="Toggle colour theme">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.2"/>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/>
+      </svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 14.5A8.2 8.2 0 0 1 9.5 4 8.3 8.3 0 1 0 20 14.5z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<div class="wrap" id="top">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="hero-grid">
+      <img class="portrait" src="profilephoto.jpeg" alt="Harsh Gupta" width="800" height="800">
+      <div>
+        <h1>Harsh Gupta</h1>
+        <p class="tagline">
+          I build <strong>LLM systems that run in production</strong> — labeling pipelines,
+          retrieval, evaluation, and the orchestration that keeps them alive long after the demo.
+        </p>
+        <p class="status">
+          <b>MS Analytics</b>, Georgia Tech · Dec 2026<br>
+          ML Intern at <b>Athena</b> · Research Intern, <b>Madabhushi Lab</b>, Emory<br>
+          Previously <b>Senior Data Scientist</b> at FUJIFILM — Tokyo, 5 years
+        </p>
+        <nav class="links">
+          <a class="primary" href="Harsh_Gupta_Resume.pdf">Résumé</a>
+          <a href="https://github.com/harshG97">GitHub</a>
+          <a href="https://linkedin.com/in/hgupta97">LinkedIn</a>
+          <a href="https://kaggle.com/harshg97">Kaggle</a>
+          <a href="mailto:harsh.gatech@gmail.com">Email</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ RESEARCH ============ -->
+  <section id="research">
+    <div class="sec-head"><h2>Research</h2></div>
+
+    <article class="entry feature">
+      <span class="kicker">Under review · 2026</span>
+      <div class="entry-head">
+        <h3>Interception points in agent safety benchmarks</h3>
+      </div>
+      <p class="sub">First author · NeurIPS 2026 workshop submission</p>
+      <div class="body">
+        <p>
+          Agent safety benchmarks report how often an agent produces a harmful outcome, and a
+          safeguard that drives that rate down is read as evidence it works. But a safeguard also
+          removes the event the metric counts — so the number left behind can describe the
+          <em>harness</em> rather than the agent.
+        </p>
+        <p>
+          I tested this by changing only <strong>where</strong> a safeguard intervenes, holding the
+          agent, the attacks and the scenario fixed: <strong>1,281 trials</strong> of an attacker
+          agent working a medical records-desk assistant for synthetic patient data. Which metric
+          collapses follows the interception point. A deterministic gate at the tool holds
+          unauthorised access at exactly <strong>0.00</strong> — the same value in four
+          conditions — and leaves disclosure unmeasurable. A model reviewer on the output leaves
+          access untouched and holds disclosure at <strong>0.02</strong>.
+        </p>
+        <p>
+          The near-zero is the more dangerous of the two: the gate's zero is <em>definitional</em>,
+          flat at every turn cap, while 0.02 is <em>stochastic</em> and passes for an ordinary rate.
+          Keeping the counterfactual observable rather than deleting it — a decoy record instead of
+          a refusal, the vetoed draft instead of nothing — recovers a <strong>measured 0.91</strong>
+          interception rate. A floor that moves with the interception point is a fact about the
+          harness, not the agent.
+        </p>
+        <div class="tags">
+          <span class="tag">LLM agents</span>
+          <span class="tag">Safety evaluation</span>
+          <span class="tag">Red teaming</span>
+          <span class="tag">Experimental design</span>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ SELECTED WORK ============ -->
+  <section id="work">
+    <div class="sec-head"><h2>Selected work</h2></div>
+
+    <article class="entry">
+      <div class="entry-head">
+        <h3>MedeFence — multi-agent red-team testbed</h3>
+        <span class="meta">2026</span>
+      </div>
+      <p class="sub">Python · LLM agents · deterministic evaluation</p>
+      <div class="body">
+        <p>
+          A two-agent testbed for studying inter-agent manipulation. An autonomous attacker agent
+          tries to talk a medical records-desk assistant into disclosing protected health
+          information without completing identity verification — the interesting failure mode being
+          <em>identity confusion</em>, not content leakage. There is no string the agent must never
+          say; it must say the right thing to the right person.
+        </p>
+        <p>
+          Scoring runs on a deterministic finite-state machine over the tool ledger rather than an
+          LLM judge, so the primary signal carries no false positives: 1,281 trials across five
+          attack strategies, a 2×3 factorial of tool defenses, and a monitor arm. Everything is
+          sandboxed — synthetic patients, mock tools, and models under my own control.
+        </p>
+        <div class="tags">
+          <span class="tag">Multi-agent</span>
+          <span class="tag">FSM scoring</span>
+          <span class="tag">Factorial design</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <h3>CanvasAI — agentic assistant for Canvas LMS</h3>
+        <span class="meta">2026</span>
+      </div>
+      <p class="sub">Python · tool calling · Streamlit</p>
+      <div class="body">
+        <p>
+          A conversational assistant that answers natural-language questions about assignments,
+          grades and course content, and syncs deadlines into Google Calendar on its own. Built on a
+          tool-calling framework with multi-provider LLM support — OpenAI, Anthropic and Groq behind
+          one interface — so switching models is a configuration change rather than a rewrite.
+        </p>
+        <div class="entry-links">
+          <a href="https://canvas-gpt.streamlit.app">Live app&nbsp;→</a>
+        </div>
+        <div class="tags">
+          <span class="tag">Tool calling</span>
+          <span class="tag">Multi-provider</span>
+          <span class="tag">Deployed</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <h3>jobwatch — a job-search pipeline I actually use</h3>
+        <span class="meta">2026</span>
+      </div>
+      <p class="sub">Python · SQLite / Turso · GitHub Actions · Streamlit</p>
+      <div class="body">
+        <p>
+          A daily poller across roughly 1,100 public ATS boards — Greenhouse, Lever, Ashby,
+          SmartRecruiters, Workable, Recruitee — that classifies each posting by level, domain and
+          sponsorship language, deduplicates on company, title and location, and files everything
+          into a triage portal for tracking applications and referrals.
+        </p>
+        <p>
+          It runs unattended on GitHub Actions against a hosted libSQL database, with incremental
+          anti-join inserts so a re-run never duplicates a row. The interesting part was making it
+          survive without me: retries on expired connection streams, a keepalive that stops the
+          scheduled workflow being auto-disabled for inactivity, and enough logging that a genuinely
+          quiet day is distinguishable from a broken one.
+        </p>
+        <div class="tags">
+          <span class="tag">ETL</span>
+          <span class="tag">Scheduling</span>
+          <span class="tag">Idempotency</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Symbolic music generation with transformers</h3>
+        <span class="meta">2025</span>
+      </div>
+      <p class="sub">PyTorch · GPT-2 · T5</p>
+      <div class="body">
+        <p>
+          Fine-tuned GPT-2 for autoregressive continuation and T5 for span infilling on 45K+ MIDI
+          files from the Lakh dataset, using REMI+ tokenization so that bar and beat structure
+          survives into the token stream instead of being flattened away.
+        </p>
+        <div class="tags">
+          <span class="tag">Fine-tuning</span>
+          <span class="tag">Tokenization</span>
+          <span class="tag">Seq2seq</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <h3>RECAP — audio captioning</h3>
+        <span class="meta">2025</span>
+      </div>
+      <p class="sub">CLAP encoder · GPT-2 decoder · AudioCaps</p>
+      <div class="body">
+        <p>
+          A prefix-tuned captioning model pairing a CLAP audio encoder with a GPT-2 decoder, plus a
+          hyperparameter sweep scored across BLEU, ROUGE, CIDEr, METEOR, SPICE and SPIDEr. Prefix
+          length dominated every other knob — the sweep turned out to be worth more than the model.
+        </p>
+        <div class="tags">
+          <span class="tag">Multimodal</span>
+          <span class="tag">Prefix tuning</span>
+          <span class="tag">Evaluation</span>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience">
+    <div class="sec-head"><h2>Experience</h2></div>
+
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Research Intern — Madabhushi Lab, Emory University</h3>
+        <span class="meta">Aug 2026 — Present</span>
+      </div>
+      <p class="sub">Atlanta, USA</p>
+      <div class="body">
+        <p>
+          AI agents for medicine and drug discovery — the SAGE project, an agentic framework for
+          interpretable, clinically translatable biomarker discovery in computational pathology.
+        </p>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Machine Learning Intern — Athena</h3>
+        <span class="meta">May 2026 — Present</span>
+      </div>
+      <p class="sub">Atlanta, USA</p>
+      <div class="body">
+        <ul class="plain">
+          <li>
+            Built the LLM labeling layer of a production churn-prediction pipeline, classifying
+            warning and positive signals from client-call documents into a 42-category risk
+            taxonomy.
+          </li>
+          <li>
+            Developed an explainable logistic-regression churn model on 235K rows of those
+            categorized signals, improving on a ~2.3K-feature XGBoost with 143 interpretable
+            features and lifting PR-AUC from 0.45 to 0.49.
+          </li>
+          <li>
+            Shipped the chain end to end as a fully incremental pipeline on Prefect and AWS
+            ECS/Fargate, with per-stage Snowflake anti-joins on deterministic hash keys making every
+            stage idempotent and restartable.
+          </li>
+          <li>
+            Migrated the labeling layer onto Amazon Bedrock batch inference for cost, selecting the
+            replacement model on a 500-sample evaluation of label agreement.
+          </li>
+          <li>
+            Built a churn attribution framework across 9.9K client partnerships in Snowflake,
+            correcting 1,150 misattributed churn events and surfacing a $13.5M ARR blind spot.
+          </li>
+        </ul>
+        <div class="tags">
+          <span class="tag">LLM pipelines</span>
+          <span class="tag">Prefect</span>
+          <span class="tag">AWS Bedrock</span>
+          <span class="tag">Snowflake</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Graduate Teaching Assistant — Georgia Tech</h3>
+        <span class="meta">Jan 2026 — May 2026</span>
+      </div>
+      <p class="sub">CSE 6040, Computing for Data Analysis · Atlanta, USA</p>
+      <div class="body">
+        <p>
+          Taught the programming and data-manipulation core of the analytics program through office
+          hours and grading — mostly the work of finding the one line a student cannot see, and
+          explaining why it was wrong rather than what to type instead.
+        </p>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Senior Data Scientist — FUJIFILM Group</h3>
+        <span class="meta">Nov 2019 — Jun 2025</span>
+      </div>
+      <p class="sub">Tokyo, Japan</p>
+      <div class="body">
+        <p>
+          Five and a half years building production ML for medical-device service operations —
+          pricing, failure prediction, demand planning, and the data platform underneath them.
+        </p>
+        <ul class="plain">
+          <li>
+            Built a RAG assistant over 500+ repair standard operating procedures with hybrid
+            retrieval, returning cited answers and abstaining when the evidence was missing.
+          </li>
+          <li>
+            Fine-tuned BERT for multi-class routing of 100K+ support tickets with class-imbalance
+            handling and confidence thresholding — auto-routing 71% at 94% precision, cutting
+            misroutes from 18% to 6%.
+          </li>
+          <li>
+            Led a team of five to deploy a CatBoost failure-prediction pipeline for endoscopes:
+            91% recall, 28% fewer unexpected device failures.
+          </li>
+          <li>
+            Developed an XGBoost contract pricing simulator (R² = 0.94) that surfaced pricing and
+            margin levers, generating $1.2M in incremental revenue.
+          </li>
+          <li>
+            Segmented customers with PCA and Gaussian mixture clustering (0.62 silhouette) to
+            support differentiated pricing tiers.
+          </li>
+          <li>
+            Built a Prophet demand-forecasting model on Azure ML for 50+ critical spare parts at 89%
+            average monthly accuracy, and a Gurobi integer program over demand, lead-time
+            constraints and stockout costs that cut stockouts by 18%.
+          </li>
+          <li>
+            Consolidated JP–EU–US contract analytics into 15+ Azure Databricks ETL pipelines with
+            standardized Power BI and Qlik Sense dashboards, saving 150 person-hours a year.
+          </li>
+          <li>
+            Partnered with repair-workshop SMEs on A/B tests of alternative repair countermeasures,
+            cutting failure recurrence by 15%.
+          </li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Production ML</span>
+          <span class="tag">Azure</span>
+          <span class="tag">Forecasting</span>
+          <span class="tag">Optimization</span>
+          <span class="tag">A/B testing</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <h3>Machine Learning Intern — Tokyo Gas</h3>
+        <span class="meta">May 2018 — Jul 2018</span>
+      </div>
+      <p class="sub">Tokyo, Japan</p>
+      <div class="body">
+        <p>
+          Classified burner flame images by fuel–air ratio with convolutional networks, fine-tuning
+          VGG-16 and ResNet-50 through transfer learning and augmentation to reach 96% accuracy on a
+          small and visually subtle dataset.
+        </p>
+        <div class="tags">
+          <span class="tag">Computer vision</span>
+          <span class="tag">Transfer learning</span>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section id="education">
+    <div class="sec-head"><h2>Education</h2></div>
+    <div class="rows">
+      <div class="row">
+        <div class="row-main">
+          <div class="row-title">Georgia Institute of Technology</div>
+          <div class="row-sub">MS Analytics — Computational Data Analytics track</div>
+        </div>
+        <span class="meta">Aug 2025 — Dec 2026</span>
+      </div>
+      <div class="row">
+        <div class="row-main">
+          <div class="row-title">Indian Institute of Technology Roorkee</div>
+          <div class="row-sub">BTech, Chemical Engineering</div>
+        </div>
+        <span class="meta">Jul 2015 — May 2019</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BEYOND ============ -->
+  <section id="beyond">
+    <div class="sec-head"><h2>Beyond the day job</h2></div>
+    <div class="rows">
+      <div class="row">
+        <div class="row-main">
+          <div class="row-title">Data Sprout</div>
+          <div class="row-sub">Founded an online community of 10K+ data learners; ran 11 workshops.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row-main">
+          <div class="row-title">Kaggle Notebooks Expert</div>
+          <div class="row-sub">Top 5% (129 / 2,685) in the Playground S4E11 competition.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row-main">
+          <div class="row-title">FUJIFILM Software Team Award</div>
+          <div class="row-sub">Company-wide award, 2023.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Harsh Gupta · Atlanta, USA</span>
+    <span><a href="mailto:harsh.gatech@gmail.com">harsh.gatech@gmail.com</a></span>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn  = document.getElementById('themeBtn');
+    var bar  = document.getElementById('topbar');
+
+    var stored = null;
+    try { stored = localStorage.getItem('theme'); } catch (e) {}
+    if (stored === 'light' || stored === 'dark') root.setAttribute('data-theme', stored);
+
+    function currentIsDark() {
+      var attr = root.getAttribute('data-theme');
+      if (attr === 'dark')  return true;
+      if (attr === 'light') return false;
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    btn.addEventListener('click', function () {
+      var next = currentIsDark() ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+
+    var onScroll = function () {
+      if (window.scrollY > 24) bar.classList.add('stuck');
+      else bar.classList.remove('stuck');
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+</script>
+
+</body>
+</html>
