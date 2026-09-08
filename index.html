@@ -165,11 +165,15 @@
     transform: translateY(-2px);
     transition: opacity .25s ease, transform .25s ease;
     pointer-events: none;
+    flex: 0 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
   }
   .topbar.stuck .brand { opacity: 1; transform: none; pointer-events: auto; }
   .brand:hover { text-decoration: none; color: var(--accent); }
 
-  .navlinks { display: flex; gap: 1.15rem; }
+  .navlinks { display: flex; gap: 1.15rem; flex: none; }
   .navlinks a {
     font-family: var(--mono);
     font-size: .735rem;
@@ -203,6 +207,10 @@
   @media (max-width: 33rem) {
     .navlinks a:nth-child(n+4) { display: none; }
     .navlinks { gap: .85rem; }
+  }
+  @media (max-width: 23rem) {
+    :root { --pad: 1.15rem; }
+    .navlinks a:nth-child(n+3) { display: none; }
   }
 
   /* ============================================================
